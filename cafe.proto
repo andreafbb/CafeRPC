@@ -1,0 +1,24 @@
+syntax = "proto3";
+package cafe;
+
+//Definisco il servizio cafe, che deve mettere a disposizione due stream:
+//Uno di richiesta per il client ed uno di risposta per il server
+
+service Cafe {
+    rpc OrderStream(stream OrderRequest) returns (stream OrderResponse) {}
+}
+
+//Richiesta proveniente dal cliente che inserisce ogni volta prodotti
+//Da aggiungere nel conto
+message OrderRequest {
+    string customer = 1;
+    string item = 2;
+    int32 quantity = 3;
+}
+
+//Richiesta del server che 
+message OrderResponse {
+    string status = 1;
+    string message = 2;
+    double partial_total = 3;
+}
